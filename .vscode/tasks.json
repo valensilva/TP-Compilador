@@ -1,0 +1,36 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Compilar con Flex",
+        "type": "shell",
+        "command": "flex",
+        "args": ["-o", "lex.yy.c", "mi_analizador_lexico.l"],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        }
+      },
+      {
+        "label": "Compilar con Bison",
+        "type": "shell",
+        "command": "bison",
+        "args": ["-d", "-o", "parser.tab.c", "mi_analizador_sintactico.y"],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        }
+      },
+      {
+        "label": "Compilar con GCC",
+        "type": "shell",
+        "command": "gcc",
+        "args": ["lex.yy.c", "parser.tab.c", "-o", "mi_compilador"],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        }
+      }
+    ]
+  }
+  
