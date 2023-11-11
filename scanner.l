@@ -9,7 +9,7 @@ void yyerror(char *s);
 int yylex();
 
 char buffer[32];
-int yylexerrors;
+int yylexerrs;
 
 
 %}
@@ -37,6 +37,6 @@ constante               ({digito})+
 ","                     return COMA;
 ":="                    return ASIGNACION;
 [ \t\n]                 ;
-.                       {yylexerrors++; sprintf(buffer," %s no es un caracter valido", yytext); yyerror(buffer);}
+.                       {yylexerrs++; sprintf(buffer," %s no es un caracter valido", yytext); yyerror(buffer);}
 
 %%

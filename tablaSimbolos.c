@@ -2,29 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-
-#define TAM_TABLASIMBOLOS 100
-
-typedef struct{
-    char id[32];
-    int val;
-} SIMBOLO;
+#include "tablaSimbolos.h"
 
 SIMBOLO TS[TAM_TABLASIMBOLOS];
 
-void iniciarlizarTabla(void){
+void inicializarTabla(void){
     for (int i=0;i<TAM_TABLASIMBOLOS;i++){
         TS[i].val = -1;
     }
-}
-
-int valorSimbolo(char *s){
-    int indice = buscarIndice(s);
-    if (indice < 0){
-        printf("no hay valor de '%s'\n",s);
-        exit(EXIT_FAILURE);
-    }
-    return TS[indice].val;
 }
 
 int buscarIndice(char *s){
@@ -35,7 +20,14 @@ int buscarIndice(char *s){
     }
     return -1;
 }
-
+int valorSimbolo(char *s){
+    int indice = buscarIndice(s);
+    if (indice < 0){
+        printf("no hay valor de '%s'\n",s);
+        exit(EXIT_FAILURE);
+    }
+    return TS[indice].val;
+}
 void escribirEnTabla(char *s, int a){
     int indice = buscarIndice(s);
     int i=0;
@@ -61,7 +53,7 @@ int cadenaANumero(char *s){
 void llenarTabla(char *a){
     int valor;
     char b[15];
-    printf("ingrese valor de %s: ", a);
+    printf("%s: ", a);
     fscanf(stdin, "%s", b);
 
     if((valor = cadenaANumero(b)) == -1){
