@@ -75,7 +75,7 @@ int yylex();
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
+
 #include "tablaSimbolos.h"
 
 void yyerror(char *s);
@@ -1407,21 +1407,21 @@ yyreduce:
 
 /* Line 1455 of yacc.c  */
 #line 53 "parser.y"
-    {(yyval.cte) = (yyvsp[(1) - (1)].cte);;}
+    {if (yylexerrs == 0) (yyval.cte) = (yyvsp[(1) - (1)].cte);;}
     break;
 
   case 13:
 
 /* Line 1455 of yacc.c  */
 #line 54 "parser.y"
-    {(yyval.cte) = (yyvsp[(1) - (3)].cte) + (yyvsp[(3) - (3)].cte);;}
+    {if (yylexerrs == 0) (yyval.cte) = (yyvsp[(1) - (3)].cte) + (yyvsp[(3) - (3)].cte);;}
     break;
 
   case 14:
 
 /* Line 1455 of yacc.c  */
 #line 55 "parser.y"
-    {(yyval.cte) = (yyvsp[(1) - (3)].cte) - (yyvsp[(3) - (3)].cte);;}
+    {if (yylexerrs == 0) (yyval.cte) = (yyvsp[(1) - (3)].cte) - (yyvsp[(3) - (3)].cte);;}
     break;
 
   case 15:
@@ -1664,7 +1664,7 @@ yyreturn:
 
 int yylexerrs = 0;
 void yyerror(char *s) {
-    fprintf(stderr, "%s\n", s);
+    fprintf(stderr, "Error: %s\n", s);
 }
 
 int main(int argc, char** argv){
@@ -1682,7 +1682,7 @@ int main(int argc, char** argv){
         yyin = stdin;
 
     inicializarTabla();
-    int a = yyparse()
+    int a = yyparse();
     if (a == 0){
         printf ("compilacion exitosa");
     }

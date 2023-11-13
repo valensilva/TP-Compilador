@@ -395,8 +395,8 @@ char *yytext;
 void yyerror(char *s);
 int yylex();
 
-char buffer[32];
-int yylexerrs;
+char buffer[32]; //para guardar texto de errores
+int yylexerrs;   //para contar errores lexicos
 
 
 #line 403 "lex.yy.c"
@@ -709,7 +709,7 @@ YY_RULE_SETUP
 case 15:
 YY_RULE_SETUP
 #line 40 "scanner.l"
-{yylexerrs++; sprintf(buffer," %s no es un caracter valido", yytext); yyerror(buffer);}
+{yylexerrs++; sprintf(buffer,"%s no es un caracter valido", yytext); yyerror(buffer);}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP

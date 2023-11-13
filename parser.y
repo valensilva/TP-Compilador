@@ -4,7 +4,7 @@ int yylex();
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
+
 #include "tablaSimbolos.h"
 
 void yyerror(char *s);
@@ -63,7 +63,7 @@ termino:
 %%
 int yylexerrs = 0;
 void yyerror(char *s) {
-    fprintf(stderr, "%s\n", s);
+    fprintf(stderr, "Error: %s\n", s);
 }
 
 int main(int argc, char** argv){
@@ -81,7 +81,7 @@ int main(int argc, char** argv){
         yyin = stdin;
 
     inicializarTabla();
-    int a = yyparse()
+    int a = yyparse();
     if (a == 0){
         printf ("compilacion exitosa");
     }

@@ -8,8 +8,8 @@
 void yyerror(char *s);
 int yylex();
 
-char buffer[32];
-int yylexerrs;
+char buffer[32]; //para guardar texto de errores
+int yylexerrs;   //para contar errores lexicos
 
 
 %}
@@ -37,6 +37,6 @@ constante               ({digito})+
 ","                     return COMA;
 ":="                    return ASIGNACION;
 [ \t\n]                 ;
-.                       {yylexerrs++; sprintf(buffer," %s no es un caracter valido", yytext); yyerror(buffer);}
+.                       {yylexerrs++; sprintf(buffer,"%s no es un caracter valido", yytext); yyerror(buffer);}
 
 %%
